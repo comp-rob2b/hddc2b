@@ -4,6 +4,7 @@
 extern TCase *hddc2b_wheel_test(void);
 extern TCase *hddc2b_drive_test(void);
 extern TCase *hddc2b_platform_test(void);
+extern TCase *hddc2b_solver_test(void);
 
 
 int main(void)
@@ -12,6 +13,7 @@ int main(void)
     suite_add_tcase(s, hddc2b_wheel_test());
     suite_add_tcase(s, hddc2b_drive_test());
     suite_add_tcase(s, hddc2b_platform_test());
+    suite_add_tcase(s, hddc2b_solver_test());
 
     SRunner *sr = srunner_create(s);
 

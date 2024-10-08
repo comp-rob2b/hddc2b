@@ -1,10 +1,37 @@
 find_package(check)
 
+add_custom_command(
+  OUTPUT solver.h
+  COMMAND
+    j2 -f json
+    ${PROJECT_SOURCE_DIR}/generator/hdr.jinja
+    ${PROJECT_SOURCE_DIR}/generator/example.hddc2b.json
+    > solver.h
+  DEPENDS
+    ${PROJECT_SOURCE_DIR}/generator/hdr.jinja
+    ${PROJECT_SOURCE_DIR}/generator/example.hddc2b.json
+)
+
+add_custom_command(
+  OUTPUT solver.c
+  COMMAND
+    j2 -f json
+    ${PROJECT_SOURCE_DIR}/generator/impl.jinja
+    ${PROJECT_SOURCE_DIR}/generator/example.hddc2b.json
+    > solver.c
+  DEPENDS
+    solver.h
+    ${PROJECT_SOURCE_DIR}/generator/impl.jinja
+    ${PROJECT_SOURCE_DIR}/generator/example.hddc2b.json
+)
+
 add_executable(main_test
   main_test.c
+  solver_test.c
   platform_test.c
   drive_test.c
   wheel_test.c
+  solver.c
 )
 
 target_include_directories(main_test
