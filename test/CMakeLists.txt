@@ -59,5 +59,6 @@ if(ENABLE_TEST_COVERAGE)
     NAME coverage
     DEPENDENCIES main_test
     EXECUTABLE main_test
+    EXCLUDE src/example/*
   )
 endif()
