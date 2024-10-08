@@ -19,6 +19,7 @@ endif()
 set(CMAKE_INSTALL_DIR ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
 
 add_subdirectory(src)
+add_subdirectory(generator)
 
 # Build the test suite
 if(ENABLE_TESTS)

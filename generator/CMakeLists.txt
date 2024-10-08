@@ -1,0 +1,10 @@
+install(
+  FILES
+    hddc2b.context.json
+    hddc2b.schema.json
+    hddc2b.shacl.ttl
+    hdr.jinja
+    impl.jinja
+  DESTINATION
+    ${CMAKE_INSTALL_DATADIR}/${CMAKE_PROJECT_NAME}
+)

@@ -1,0 +1,111 @@
+{
+    "license": "https://github.com/aws/mit-0",
+    "@context": "hddc2b.context.json",
+    "@type": "GeneratorConfiguration",
+    "solvers": [
+        {
+            "name": "hddc2b_example_frc",
+            "quantity": "force",
+            "preprocess-platform-weight": true,
+            "preprocess-drive-weight": true,
+            "weight-in-platform-space": true,
+            "weight-in-drive-space": true,
+            "has-secondary-task": true,
+            "inverse": "pseudoinverse",
+            "description": [
+                "Find a solution to the force distribution problem for a situation where the",
+                "platform is either **singular** (less than one drive unit) or **redundant**",
+                "(two or more drive units), compute the weight decomposition internally and",
+                "include a reference drive force in the nullspace."
+            ]
+        },
+        {
+            "name": "hddc2b_example_vel",
+            "quantity": "velocity",
+            "preprocess-platform-weight": false,
+            "preprocess-drive-weight": false,
+            "weight-in-platform-space": true,
+            "weight-in-drive-space": true,
+            "has-secondary-task": false,
+            "inverse": "pseudoinverse",
+            "description": [
+                "Find a solution to the velocity composition problem for a situation where the",
+                "platform is either **singular** (less than one drive unit) or **redundant**",
+                "(two or more drive units)."
+            ]
+        },
+        {
+            "name": "ex_frc_pltf_to_pvt_redu_sing_pinv",
+            "quantity": "force",
+            "preprocess-platform-weight": false,
+            "preprocess-drive-weight": false,
+            "weight-in-platform-space": true,
+            "weight-in-drive-space": true,
+            "has-secondary-task": false,
+            "inverse": "pseudoinverse",
+            "description": [
+                "Find a solution to the force distribution problem for a situation where the",
+                "platform is either **singular** (less than one drive unit) or **redundant**",
+                "(two or more drive units)."
+            ]
+        },
+        {
+            "name": "ex_frc_pltf_to_pvt_redu_sing_ref_pinv",
+            "quantity": "force",
+            "preprocess-platform-weight": false,
+            "preprocess-drive-weight": false,
+            "weight-in-platform-space": true,
+            "weight-in-drive-space": true,
+            "has-secondary-task": true,
+            "inverse": "pseudoinverse",
+            "description": [
+                "Find a solution to the force distribution problem for a situation where the",
+                "platform is either **singular** (less than one drive unit) or **redundant**",
+                "(two or more drive units) and include a reference drive force in the",
+                "nullspace."
+            ]
+        },
+        {
+            "name": "ex_frc_pltf_to_pvt_sing_dls",
+            "quantity": "force",
+            "preprocess-platform-weight": false,
+            "preprocess-drive-weight": false,
+            "weight-in-platform-space": true,
+            "weight-in-drive-space": false,
+            "has-secondary-task": false,
+            "inverse": "damped-least-squares",
+            "description": [
+                "Find a solution to the force distribution problem for a situation where the",
+                "platform is **singular** (less than one drive unit)."
+            ]
+        },
+        {
+            "name": "ex_frc_pltf_to_pvt_redu_ref_pinv",
+            "quantity": "force",
+            "preprocess-platform-weight": false,
+            "preprocess-drive-weight": false,
+            "weight-in-platform-space": false,
+            "weight-in-drive-space": true,
+            "has-secondary-task": true,
+            "inverse": "pseudoinverse",
+            "description": [
+                "Find a solution to the force distribution problem for a situation where the",
+                "platform is **redundant** (more than one drive unit)."
+            ]
+        },
+        {
+            "name": "ex_vel_pvt_to_pltf_sing_dls",
+            "quantity": "velocity",
+            "preprocess-platform-weight": false,
+            "preprocess-drive-weight": false,
+            "weight-in-platform-space": true,
+            "weight-in-drive-space": false,
+            "has-secondary-task": false,
+            "inverse": "damped-least-squares",
+            "description": [
+                "Find a solution to the velocity composition problem for a situation where the",
+                "platform is **singular** (less than one drive unit)."
+            ]
+        }
+    ]
+}

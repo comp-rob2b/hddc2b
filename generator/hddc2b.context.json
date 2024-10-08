@@ -1,0 +1,46 @@
+{
+    "@context": {
+        "@version": 1.1,
+        "hddc2b": "https://comp-rob2b.github.io/hddc2b#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "GeneratorConfiguration": {
+            "@id": "hddc2b:GeneratorConfiguration",
+            "@context": {
+                "solvers": {
+                    "@id": "hddc2b:solvers",
+                    "@container": "@set"
+                }
+            }
+        },
+        "name": {
+            "@id": "hddc2b:name",
+            "@type": "xsd:string"
+        },
+        "quantity": {
+            "@id": "hddc2b:quantity",
+            "@type": "@vocab",
+            "@context": {
+                "force": "hddc2b:force",
+                "velocity": "hddc2b:velocity"
+            }
+        },
+        "preprocess-platform-weight": "hddc2b:preprocess-platform-weight",
+        "preprocess-drive-weight": "hddc2b:preprocess-drive-weight",
+        "weight-in-platform-space": "hddc2b:weight-in-platform-space",
+        "weight-in-drive-space": "hddc2b:weight-in-drive-space",
+        "has-secondary-task": "hddc2b:has-secondary-task",
+        "inverse": {
+            "@id": "hddc2b:inverse",
+            "@type": "@vocab",
+            "@context": {
+                "pseudoinverse": "hddc2b:pseudoinverse",
+                "damped-least-squares": "hddc2b:damped-least-squares"
+            }
+        },
+        "description": {
+            "@id": "hddc2b:description",
+            "@type": "xsd:string",
+            "@container": "@list"
+        }
+    }
+}

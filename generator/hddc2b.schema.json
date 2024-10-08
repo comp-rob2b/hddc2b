@@ -1,0 +1,65 @@
+{
+    "license": "https://github.com/aws/mit-0",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/product.schema.json",
+    "title": "hddc2b schema",
+    "description": "Validate solver configurations for the hddc2b library",
+    "type": "object",
+    "properties": {
+        "solvers": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/solvers" }
+        }
+    },
+    "required": [ "solvers" ],
+    "$defs": {
+        "identifier": {
+            "type": "string",
+            "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$"
+        },
+        "solvers": {
+            "type": "object",
+            "properties": {
+                "name": { "$ref": "#/$defs/identifier" },
+                "quantity": {
+                    "type": "string",
+                    "enum": [ "force", "velocity" ]
+                },
+                "preprocess-platform-weight": {
+                    "type": "boolean"
+                },
+                "preprocess-drive-weight": {
+                    "type": "boolean"
+                },
+                "weight-in-platform-space": {
+                    "type": "boolean"
+                },
+                "weight-in-drive-space": {
+                    "type": "boolean"
+                },
+                "has-secondary-task": {
+                    "type": "boolean"
+                },
+                "inverse": {
+                    "type": "string",
+                    "enum": [ "pseudoinverse", "damped-least-squares" ]
+                },
+                "description": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                }
+            },
+            "required": [
+                "name",
+                "quantity",
+                "preprocess-platform-weight",
+                "preprocess-drive-weight",
+                "weight-in-platform-space",
+                "weight-in-drive-space",
+                "has-secondary-task",
+                "inverse",
+                "description"
+            ]
+        }
+    }
+}

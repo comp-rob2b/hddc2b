@@ -1,0 +1,79 @@
+# SPDX-License-Identifier: MIT-0
+@prefix sh:     <http://www.w3.org/ns/shacl#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix hddc2b: <https://comp-rob2b.github.io/hddc2b#> .
+
+hddc2b:GeneratorConfiguration
+    a rdfs:Class, sh:NodeShape ;
+    sh:property [
+        sh:path hddc2b:solvers ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:node hddc2b:SolverConfiguration
+    ] .
+
+hddc2b:SolverConfiguration
+    a sh:NodeShape ;
+    sh:property [
+        sh:path hddc2b:name ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:pattern "^[a-zA-Z_][a-zA-Z0-9_]*$" ;
+        sh:nodeKind sh:Literal
+    ] ;
+    sh:property [
+        sh:path hddc2b:quantity ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( hddc2b:force hddc2b:velocity ) ;
+        sh:nodeKind sh:IRI
+    ] ;
+    sh:property [
+        sh:path hddc2b:preprocess-platform-weight ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean ;
+        sh:nodeKind sh:Literal
+    ] ;
+    sh:property [
+        sh:path hddc2b:preprocess-drive-weight ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean ;
+        sh:nodeKind sh:Literal
+    ] ;
+    sh:property [
+        sh:path hddc2b:weight-in-platform-space ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean ;
+        sh:nodeKind sh:Literal
+    ] ;
+    sh:property [
+        sh:path hddc2b:weight-in-drive-space ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean ;
+        sh:nodeKind sh:Literal
+    ] ;
+    sh:property [
+        sh:path hddc2b:has-secondary-task ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean ;
+        sh:nodeKind sh:Literal
+    ] ;
+    sh:property [
+        sh:path hddc2b:inverse ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( hddc2b:pseudoinverse hddc2b:damped-least-squares ) ;
+        sh:nodeKind sh:IRI
+    ] ;
+    sh:property [
+        sh:path ( hddc2b:description [ sh:zeroOrMorePath rdf:rest ] rdf:first ) ;
+        sh:datatype xsd:string ;
+        sh:nodeKind sh:Literal
+    ] .
