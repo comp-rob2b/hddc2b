@@ -2,12 +2,14 @@
 #include <check.h>
 
 extern TCase *hddc2b_wheel_test(void);
+extern TCase *hddc2b_drive_test(void);
 
 
 int main(void)
 {
     Suite *s = suite_create("core");
     suite_add_tcase(s, hddc2b_wheel_test());
+    suite_add_tcase(s, hddc2b_drive_test());
 
     SRunner *sr = srunner_create(s);
 

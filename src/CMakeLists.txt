@@ -1,6 +1,7 @@
 add_library(hddc2b SHARED
   config.c
   wheel.c
+  drive.c
 )
 
 target_include_directories(hddc2b
