@@ -2,6 +2,7 @@ find_package(check)
 
 add_executable(main_test
   main_test.c
+  platform_test.c
   drive_test.c
   wheel_test.c
 )
