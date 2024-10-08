@@ -1,0 +1,52 @@
+name: "Build and deploy documentation"
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  doc:
+    name: Build and deploy documentation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen python3-sphinx python3-breathe python3-sphinx-rtd-theme
+      - name: Checkout CBLAS/LAPACKE
+        uses: actions/checkout@v4.2.0
+        with:
+          repository: Reference-LAPACK/lapack
+          ref: v3.12.0
+          path: ${{ github.workspace }}/lapack
+      - name: Configure CBLAS/LAPACKE
+        run: |
+          cmake -B ${{ github.workspace }}/lapack/build -DBUILD_TESTING=Off -DBUILD_SINGLE=Off -DBUILD_COMPLEX=Off -DBUILD_COMPLEX16=Off -DLAPACKE_BUILD_SINGLE=Off -DLAPACKE_BUILD_COMPLEX=Off -DLAPACKE_BUILD_COMPLEX16=Off -DCBLAS=On -DLAPACKE=On -DBUILD_SHARED_LIBS=On -DCMAKE_INSTALL_PREFIX=/usr ${{ github.workspace }}/lapack
+      - name: Build CBLAS/LAPACKE
+        run: cmake --build ${{ github.workspace }}/lapack/build
+      - name: Install CBLAS/LAPACKE
+        run: |
+          cd ${{ github.workspace }}/lapack/build
+          sudo make install
+      - name: Checkout hddc2b
+        uses: actions/checkout@v4.2.0
+        with:
+          path: hddc2b
+      - name: Configure hddc2b
+        run: |
+          cmake -B ${{ github.workspace }}/hddc2b/build -DCMAKE_INSTALL_PREFIX=/usr -DENABLE_DOC=On ${{ github.workspace }}/hddc2b
+      - name: Build hddc2b
+        run: |
+          cmake --build ${{ github.workspace }}/hddc2b/build
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ github.workspace }}/hddc2b/build/hddc2b_sphinx
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
