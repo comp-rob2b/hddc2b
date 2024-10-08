@@ -2,11 +2,13 @@ cmake_minimum_required(VERSION 3.19)
 project(hddc2b)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/thirdparty/cmake/codecoverage)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/thirdparty/cmake/sphinx)
 
 include(GNUInstallDirs)
 include(CMakeDependentOption)
 
 option(ENABLE_TESTS                         "Build unit tests" Off)
+option(ENABLE_DOC                           "Build documentation" Off)
 option(ENABLE_PACKAGE_REGISTRY              "Add this package to CMake's package registry" Off)
 cmake_dependent_option(ENABLE_TEST_COVERAGE "Generate a test coverage report" OFF "ENABLE_TESTS" OFF)
 
@@ -24,6 +26,29 @@ add_subdirectory(generator)
 # Build the test suite
 if(ENABLE_TESTS)
   add_subdirectory(test)
+endif()
+
+# Build the documentation
+if(ENABLE_DOC)
+  find_package(Doxygen REQUIRED)
+  find_package(Sphinx REQUIRED breathe)
+
+  set(DOXYGEN_GENERATE_HTML NO)
+  set(DOXYGEN_GENERATE_XML YES)
+  set(DOXYGEN_ALIASES
+    [[href{2}="\verbatim embed:rst:inline `\1 <\2>`_ \endverbatim"]]
+    [[cite{1}="\verbatim embed:rst:inline [\1]_ \endverbatim"]]
+    [[func{1}="\verbatim embed:rst:inline :c:func:`\1` \endverbatim"]]
+  )
+  set(DOXYGEN_VERBATIM_VARS DOXYGEN_ALIASES)
+  doxygen_add_docs(${PROJECT_NAME}_doxygen include)
+
+  sphinx_add_docs(
+    ${PROJECT_NAME}_sphinx
+    BREATHE_PROJECTS ${PROJECT_NAME}_doxygen
+    BUILDER html
+    SOURCE_DIRECTORY docs/sphinx/source
+  )
 endif()
 
 # Export this package to CMake's package registry
