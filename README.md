@@ -1,6 +1,6 @@
 # hddc2b
 
-`hddc2b` is a C library that provides building blocks (2b) for solving planar, two-dimensional kinematics and statics problems of mobile robots that feature a hub-drive with differential-castor (HDDC) kinematics configuration such as the [KELO Robotics](<https://www.kelo-robotics.com/products/>) platforms.
+`hddc2b` is a C library that provides building blocks (2b) for solving planar, two-dimensional kinematics and statics problems of mobile robots that feature a hub-drive with differential-castor (HDDC) kinematics configuration such as the [KELO Robotics](https://www.kelo-robotics.com/products/) platforms.
 The library is complemented by a code generator that composes these building blocks into a wide range of concrete solvers as specified via a JSON-based configuration language.
 
 By design, `hddc2b` only supports two levels of task hierarchy and deliberately excludes a velocity distribution solver.
@@ -13,10 +13,10 @@ More details of HDDC platforms and their integration into overall robot control 
 
 The documentation comprises
 
-* the [installation instructions](docs/installation.rst)
-* [code generator](docs/code_generation.rst) instructions
-* a [mathematical derivation](docs/least_squares.rst) of the solvers
-* a [frame diagram](docs/frames.rst) for KELO robots
+* the [installation instructions](https://comp-rob2b.github.io/hddc2b/installation.html)
+* [code generator](https://comp-rob2b.github.io/hddc2b/code_generation.html) instructions
+* a [mathematical derivation](https://comp-rob2b.github.io/hddc2b/least_squares.html) of the solvers
+* a [frame diagram](https://comp-rob2b.github.io/hddc2b/frames.html) for KELO robots
 * an [example](src/example/hddc2b_example.c) that showcases how to use the solver.
 
 ## Third-party software
