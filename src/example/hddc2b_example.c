@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: LGPL-3.0
 #include <hddc2b/functions/platform.h>
+#include <hddc2b/functions/solver.h>
 #include <hddc2b/functions/drive.h>
 #include <hddc2b/functions/wheel.h>
 #include <solver.h>
@@ -192,6 +193,34 @@ int main(void)
             f_drive);
     printf("\nf_drive:\n");
     print_matrix(NUM_DRV_COORD, NUM_DRV, f_drive);
+
+
+
+    double f_prim[NUM_DRV * NUM_DRV_COORD];    // [N]
+    double f_scnd[NUM_DRV * NUM_DRV_COORD];    // [N]
+    hddc2b_pltf_frc_pltf_to_drv(NUM_DRV,
+            EPS,
+            g,
+            w_platform,
+            f_platform,
+            w_drive,
+            f_drive_ref,
+            f_prim,
+            f_scnd);
+    printf("\nf_prim:\n");
+    print_matrix(NUM_DRV_COORD, NUM_DRV, f_prim);
+    printf("\nf_scnd:\n");
+    print_matrix(NUM_DRV_COORD, NUM_DRV, f_scnd);
+
+    double f_drv[NUM_DRV * NUM_DRV_COORD];     // [N]
+    hddc2b_pltf_frc_redu_ref_fini(NUM_DRV,
+            f_prim,
+            f_scnd,
+            f_drv);
+    printf("\nf_drv:\n");
+    print_matrix(NUM_DRV_COORD, NUM_DRV, f_drv);
+
+
 
     hddc2b_drv_frc_pvt_to_gnd(NUM_DRV,
             wheel_distance,

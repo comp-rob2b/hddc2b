@@ -7,6 +7,7 @@ add_library(hddc2b SHARED
   wheel.c
   drive.c
   platform.c
+  solver.c
 )
 
 target_include_directories(hddc2b
