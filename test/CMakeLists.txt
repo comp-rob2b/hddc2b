@@ -3,7 +3,7 @@ find_package(check)
 add_custom_command(
   OUTPUT solver.h
   COMMAND
-    j2 -f json
+    jinja2 --format json
     ${PROJECT_SOURCE_DIR}/generator/hdr.jinja
     ${PROJECT_SOURCE_DIR}/generator/example.hddc2b.json
     > solver.h
@@ -15,7 +15,7 @@ add_custom_command(
 add_custom_command(
   OUTPUT solver.c
   COMMAND
-    j2 -f json
+    jinja2 --format json
     ${PROJECT_SOURCE_DIR}/generator/impl.jinja
     ${PROJECT_SOURCE_DIR}/generator/example.hddc2b.json
     > solver.c

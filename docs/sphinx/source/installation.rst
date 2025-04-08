@@ -12,7 +12,7 @@ Dependencies
 * Code generator dependencies:
 
   * `Jinja <https://palletsprojects.com/projects/jinja/>`_
-  * `j2cli <https://github.com/kolypto/j2cli>`_
+  * `jinja2-cli <https://github.com/mattrobenolt/jinja2-cli>`_
 
 * Build dependencies:
 
